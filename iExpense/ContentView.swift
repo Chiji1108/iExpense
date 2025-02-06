@@ -68,6 +68,9 @@ struct ContentView: View {
                             Text(item.amount, format: .currency(code: localCurrency))
                                 .foregroundStyle(item.amount < 10 ? .blue : item.amount < 100 ? .yellow : .red)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(item.name), \(item.amount.formatted(.currency(code: "USD")))")
+                        .accessibilityHint(item.type)
                     }
                     .onDelete {
                         expenses.personalItems.remove(atOffsets: $0)
@@ -90,6 +93,9 @@ struct ContentView: View {
                             Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                                 .foregroundStyle(item.amount < 10 ? .blue : item.amount < 100 ? .yellow : .red)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(item.name), \(item.amount.formatted(.currency(code: "USD")))")
+                        .accessibilityHint(item.type)
                     }
                     .onDelete {
                         expenses.businessItems.remove(atOffsets: $0)
